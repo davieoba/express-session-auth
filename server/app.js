@@ -13,7 +13,7 @@ const AuthRoutes = require('./routes/auth-routes')
 const UserRoutes = require('./routes/user-routes')
 require('./utils/passport')
 require('./utils/passport-local')
-const { MONGODB_URI, SESSION_KEY } = require('./utils/config')
+const { MONGODB_URI, SESSION_KEY, MONGODB_EXPRESS_SESSION_URI } = require('./utils/config')
 const helmet = require('helmet')
 
 mongoose.connect(MONGODB_URI)
@@ -43,7 +43,7 @@ app.use(cookieSession({
 */
 
 const sessionStore = MongoStore.create({
-  mongoUrl: 'mongodb+srv://bodunrindavid:KMOLu7aD1JkIbl3q@cluster0.4p6cfxn.mongodb.net/express-session-auth?retryWrites=true&w=majority',
+  mongoUrl: MONGODB_EXPRESS_SESSION_URI,
   collectionName: 'express-session'
 })
 

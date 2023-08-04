@@ -5,6 +5,7 @@ const { GOOGLE_PLUS_CLIENT_SECRET } = process.env
 const { MONGODB_URI } = process.env
 const { SESSION_KEY } = process.env
 const { RESEND_API } = process.env
+const { MONGODB_EXPRESS_SESSION_URI } = process.env
 
 module.exports = {
   PORT,
@@ -12,5 +13,6 @@ module.exports = {
   GOOGLE_PLUS_CLIENT_SECRET,
   MONGODB_URI,
   SESSION_KEY,
-  RESEND_API
+  RESEND_API,
+  MONGODB_EXPRESS_SESSION_URI
 }
