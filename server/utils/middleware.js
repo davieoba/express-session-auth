@@ -1,7 +1,6 @@
 exports.checkCookie = (req, res, next) => {
 
   if (req.session.user) {
-    console.log('the user is authenticated')
     // console.log(req.cookies)
     // console.log(req.session)
     // console.log(req.signedCookies)

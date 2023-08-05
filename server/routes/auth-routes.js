@@ -11,7 +11,7 @@ router.get('/', (req, res, user) => {
 })
 
 router.get('/hello', (req, res, next) => {
-  console.log('this is the session of the currenty logged in user', req.session)
+  // console.log('this is the session of the currenty logged in user', req.session)
 
   if (req.session.viewCount === undefined) {
     req.session.viewCount = 0
@@ -34,7 +34,7 @@ const sign_in_with_jwt = (req, res, next) => {
     // it is either you make use of req.user || req.session but not the 2 of them
     // req.user = user
     req.session.user = user
-    console.log('req.session', req.session)
+    // console.log('req.session', req.session)
     // req.session = user
     // console.log(req.user)
 
@@ -88,6 +88,7 @@ router.get('/google/redirect', sign_in_with_google, async (req, res, next) => {
 
   // console.log({ expirationDate })
   console.log('req.user', req.user)
+  req.session.user = req?.user
   res.cookie('token', 'some-cookie-very-serious-data', { secure: true, httpOnly: true, expires: expirationDate })
 
   res.end()
