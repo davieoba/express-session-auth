@@ -55,7 +55,11 @@ advnatages
 - performance optimization, using server sessions makes it possible for your app to not have bottlenecks since the in-memory of the server is not used for user session
 
 ## nice security features to implement
-- revoke access when a user logs in
-- session data cleanup
-- token / cookie expiry 
-- notify the user
+[ ] revoke access when a user logs out
+[ ] session data cleanup
+[x] token / cookie expiry 
+[ ] notify the user
+
+#### how to impement session data cleanup
+- create a connection to my session database
+- from there find and delete session that would have expired

@@ -29,19 +29,10 @@ const sign_in_with_jwt = (req, res, next) => {
     if (err) throw err
     if (!user) return res.send("No User Exists")
 
-    // console.log('sign in with jwt', user)
-
-    // it is either you make use of req.user || req.session but not the 2 of them
+    // it is either you make use of req.user || req.session but not the 2 of them (note: for server session makes use of session of course)
     // req.user = user
     req.session.user = user
     // console.log('req.session', req.session)
-    // req.session = user
-    // console.log(req.user)
-
-    // const expirationDate = new Date(Date.now() + 60 * 1000)
-    // res.cookie('token', 'some-cookie-very-serious-data', { secure: true, httpOnly: true, expires: expirationDate })
-
-    // console.log(req.isAuthenticated)
 
     return req.logIn(user, (err) => {
       if (err) throw err
