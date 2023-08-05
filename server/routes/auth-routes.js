@@ -27,7 +27,7 @@ router.get('/hello', (req, res, next) => {
 const sign_in_with_jwt = (req, res, next) => {
   passport.authenticate('local', { session: true }, (err, user, info) => {
     if (err) throw err
-    if (!user) res.send("No User Exists")
+    if (!user) return res.send("No User Exists")
 
     // console.log('sign in with jwt', user)
 
@@ -38,8 +38,8 @@ const sign_in_with_jwt = (req, res, next) => {
     // req.session = user
     // console.log(req.user)
 
-    const expirationDate = new Date(Date.now() + 60 * 60 * 1000)
-    res.cookie('token', 'some-cookie-very-serious-data', { secure: true, httpOnly: true, expires: expirationDate })
+    // const expirationDate = new Date(Date.now() + 60 * 1000)
+    // res.cookie('token', 'some-cookie-very-serious-data', { secure: true, httpOnly: true, expires: expirationDate })
 
     // console.log(req.isAuthenticated)
 
@@ -84,7 +84,7 @@ const sign_in_with_google = (req, res, next) => {
 router.get('/google', sign_in_with_google)
 
 router.get('/google/redirect', sign_in_with_google, async (req, res, next) => {
-  const expirationDate = new Date(Date.now() + 60 * 60 * 1000)
+  const expirationDate = new Date(Date.now() + 60 * 1000)
 
   // console.log({ expirationDate })
   console.log('req.user', req.user)

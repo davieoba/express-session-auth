@@ -46,3 +46,16 @@ advnatages
 - express.session stays on your server, so you can store things there that won't be accessible to the client
 - express sessions don't have storage limits
 - Storing things in the DOM mean you'll have to transmit everything over the wire, incurring extra bandwidth costs.
+
+### advantage of using express session over cookie session
+- the server session is scalable and works well with microarchitecture
+- the server session is persistent
+- more user data/info can be stored in the server session
+- if the server restarts the user session is not lost
+- performance optimization, using server sessions makes it possible for your app to not have bottlenecks since the in-memory of the server is not used for user session
+
+## nice security features to implement
+- revoke access when a user logs in
+- session data cleanup
+- token / cookie expiry 
+- notify the user

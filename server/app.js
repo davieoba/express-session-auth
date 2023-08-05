@@ -54,9 +54,9 @@ app.use(expressSession({
   cookie: {
     secure: false,
     httpOnly: true,
-    maxAge: 60 * 60 * 1000,
+    maxAge: 60 * 1000,
   }
-}))
+})) 
 
 app.use(passport.initialize())
 app.use(passport.session()) // this is what connects passport and my cookie session
