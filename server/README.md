@@ -40,3 +40,9 @@ The following points can help you choose which to use:
 - cookie-session can be used to store a "light" session and include an identifier to look up a database-backed secondary store to reduce database lookups.
 
 The middleware will automatically add a Set-Cookie header to the response if the contents of req.session were altered. Note that no Set-Cookie header will be in the response (and thus no session created for a specific user) unless there are contents in the session, so be sure to add something to req.session as soon as you have identifying information to store for the session.
+
+## express session
+advnatages
+- express.session stays on your server, so you can store things there that won't be accessible to the client
+- express sessions don't have storage limits
+- Storing things in the DOM mean you'll have to transmit everything over the wire, incurring extra bandwidth costs.

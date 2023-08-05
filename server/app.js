@@ -28,7 +28,6 @@ mongoose.connect(MONGODB_URI)
 // app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-
 app.use(express.json())
 app.use(cookieParser(SESSION_KEY))
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }))

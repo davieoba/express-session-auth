@@ -10,6 +10,20 @@ router.get('/', (req, res, user) => {
   res.send(req.cookies)
 })
 
+router.get('/hello', (req, res, next) => {
+  console.log('this is the session of the currenty logged in user', req.session)
+
+  if (req.session.viewCount === undefined) {
+    req.session.viewCount = 0
+  } else {
+    req.session.viewCount++
+  }
+
+  console.log(req.session)
+
+  res.send(`the view count is ${req.session.viewCount}`)
+})
+
 const sign_in_with_jwt = (req, res, next) => {
   passport.authenticate('local', { session: true }, (err, user, info) => {
     if (err) throw err
@@ -18,7 +32,9 @@ const sign_in_with_jwt = (req, res, next) => {
     // console.log('sign in with jwt', user)
 
     // it is either you make use of req.user || req.session but not the 2 of them
-    req.user = user
+    // req.user = user
+    req.session.user = user
+    console.log('req.session', req.session)
     // req.session = user
     // console.log(req.user)
 
@@ -29,7 +45,7 @@ const sign_in_with_jwt = (req, res, next) => {
 
     return req.logIn(user, (err) => {
       if (err) throw err
-      console.log(req.user)
+      // console.log(req.user)
       req.user = user
       res.send('successfully authenticated')
     })
@@ -43,7 +59,15 @@ router.post('/login', login, sign_in_with_jwt)
 router.get('/logout', (req, res, next) => {
   req.logout()
   req.user = null
-  res.redirect('/')
+  res.cookie('connect.sid', '', {
+    maxAge: 1
+  })
+  req.session.destroy(err => {
+    if (err) {
+      console.log('Error destroying session')
+    }
+    res.redirect('/')
+  })
 })
 
 router.get('/check-cookie', checkCookie, (req, res, next) => {
